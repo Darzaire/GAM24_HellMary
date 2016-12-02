@@ -1,0 +1,92 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class PlayerUI : MonoBehaviour
+{
+    Rect rect;
+
+    public float currentHealth;
+    public float health = 10;
+    public Texture heartTexture;
+    private float healthStart = 0f;
+    public float healthCoolDown = 2f;
+    public float healthDepletion = 1;
+
+    public float currentHunger;
+    public float hunger = 10;
+    public Texture hungerTexture;
+    private float hungerStart = 0f;
+    public float hungerCoolDown = 2f;
+    public float hungerDepletion = 1;
+
+    public bool isStarving = false;
+    public bool isDying = false;
+
+    // Use this for initialization
+    void Start ()
+    {
+        currentHunger = hunger;
+        currentHealth = health;
+
+        rect = new Rect(Screen.width*0.05f,Screen.height*0.95f,Screen.width*0.05f,Screen.width*0.05f); //Places Texture in Proper position
+        heartTexture = Resources.Load("Images/Heart") as Texture; //Loads texture beings used
+        hungerTexture = Resources.Load("Images/Hunger") as Texture;
+    }
+
+    void Update()
+    {
+        PlayerHealth();
+        PlayerHunger();
+    }
+	
+	// Update is called once per frame
+	void OnGUI ()
+    {
+        for(int i = 0;i<currentHealth;i++)
+        {
+            Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions ray of textures
+
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i), rect.y, 50, 18), heartTexture); //Draws textrues
+        }
+
+        for (int i = 0; i < currentHunger; i++)
+        {
+            Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions ray of textures
+            
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 11), rect.y, 50, 18), hungerTexture); //Draws textrues
+        }
+    }
+
+    void PlayerHealth()
+    {
+        if (Time.time > healthStart + healthCoolDown)
+        {
+            if (isStarving == true)
+            {
+                isDying = true;
+                healthStart = Time.time;
+                currentHealth -= healthDepletion;
+            }
+        }
+    }
+
+    void PlayerHunger()
+    {
+        if (Time.time > hungerStart + hungerCoolDown)
+        {
+            if (isStarving == false)
+            {
+                hungerStart = Time.time;
+                currentHunger -= hungerDepletion;
+            }
+            if (currentHunger == 0)
+            {
+                isStarving = true;
+            }
+            else if (currentHunger > 0)
+            {
+                isStarving = false;
+            }
+        }
+    }
+}
