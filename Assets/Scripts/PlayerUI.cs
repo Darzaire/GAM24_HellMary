@@ -6,15 +6,15 @@ public class PlayerUI : MonoBehaviour
     Rect rect;
 
     public float currentHealth;
-    public float health = 10;
-    public Texture heartTexture;
+    private float health = 10;
+    private Texture heartTexture;
     private float healthStart = 0f;
     public float healthCoolDown = 2f;
     public float healthDepletion = 1;
 
     public float currentHunger;
-    public float hunger = 10;
-    public Texture hungerTexture;
+    private float hunger = 10;
+    private Texture hungerTexture;
     private float hungerStart = 0f;
     public float hungerCoolDown = 2f;
     public float hungerDepletion = 1;
@@ -29,7 +29,7 @@ public class PlayerUI : MonoBehaviour
         currentHealth = health;
 
         rect = new Rect(Screen.width*0.05f,Screen.height*0.95f,Screen.width*0.05f,Screen.width*0.05f); //Places Texture in Proper position
-        heartTexture = Resources.Load("Images/Heart") as Texture; //Loads texture beings used
+        heartTexture = Resources.Load("Images/Heart") as Texture; //Loads texture being used
         hungerTexture = Resources.Load("Images/Hunger") as Texture;
     }
 
@@ -37,6 +37,12 @@ public class PlayerUI : MonoBehaviour
     {
         PlayerHealth();
         PlayerHunger();
+        HealthRegen();
+
+        if(currentHealth == health)
+        {
+            isDying = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -44,7 +50,7 @@ public class PlayerUI : MonoBehaviour
     {
         for(int i = 0;i<currentHealth;i++)
         {
-            Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions ray of textures
+            Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions array of textures
 
             GUI.DrawTexture(new Rect(rect.x * (.9f * i), rect.y, 50, 18), heartTexture); //Draws textrues
         }
@@ -61,7 +67,7 @@ public class PlayerUI : MonoBehaviour
     {
         if (Time.time > healthStart + healthCoolDown)
         {
-            if (isStarving == true)
+            if (isStarving && currentHealth != 0)
             {
                 isDying = true;
                 healthStart = Time.time;
@@ -86,6 +92,20 @@ public class PlayerUI : MonoBehaviour
             else if (currentHunger > 0)
             {
                 isStarving = false;
+            }
+        }
+    }
+    void HealthRegen()
+    {
+        if (isDying == true)
+        {
+            if (Time.time > healthStart + healthCoolDown)
+            {
+                if (!isStarving && currentHealth != health)
+                {
+                    healthStart = Time.time;
+                    currentHealth += healthDepletion;
+                }
             }
         }
     }
