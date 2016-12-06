@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Inventory : MonoBehaviour {
+public class InventoryManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
