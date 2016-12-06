@@ -6,6 +6,7 @@ public class WorldGen : MonoBehaviour
 	public int worldWidth = 10;
 	public int initialHeightVariance = 2;
 	public int grows = 30;
+	public int chunkSize = 16;
 	//public float mitigatingFactor = 4; // over 16
 
 	public GameObject[] surfaceChunks;
@@ -34,7 +35,7 @@ public class WorldGen : MonoBehaviour
 			{
 				int randChunk = Random.Range(0, surfaceChunks.Length); // biome? may need removal
 				int randHVar = Random.Range(-initialHeightVariance, initialHeightVariance);
-				GameObject _ch = Instantiate(surfaceChunks[randChunk], new Vector3(x,randHVar,z), Quaternion.identity) as GameObject;
+				GameObject _ch = Instantiate(surfaceChunks[randChunk], new Vector3(x*chunkSize,randHVar,z*chunkSize), Quaternion.identity) as GameObject;
 				_ch.transform.parent = folderSurface.transform;
 				// set chunk type to surface
 			}
@@ -88,7 +89,7 @@ public class WorldGen : MonoBehaviour
 		{
 			for (int x = -worldWidth; x < worldWidth; x++)
 			{
-				GameObject _ch = Instantiate(ugChunks[1], new Vector3(x,baseUL,z), Quaternion.identity) as GameObject;
+				GameObject _ch = Instantiate(ugChunks[1], new Vector3(x*chunkSize,baseUL,z*chunkSize), Quaternion.identity) as GameObject;
 				_ch.transform.parent = folderUGiron.transform;
 			}
 		}
@@ -102,7 +103,7 @@ public class WorldGen : MonoBehaviour
 		{
 			for (int x = -worldWidth; x < worldWidth; x++)
 			{
-				GameObject _ch = Instantiate(ugChunks[2], new Vector3(x,baseUL-1,z), Quaternion.identity) as GameObject;
+				GameObject _ch = Instantiate(ugChunks[2], new Vector3(x*chunkSize,baseUL-1,z*chunkSize), Quaternion.identity) as GameObject;
 				_ch.transform.parent = folderUGgold.transform;
 			}
 		}
@@ -116,7 +117,7 @@ public class WorldGen : MonoBehaviour
 		{
 			for (int x = -worldWidth; x < worldWidth; x++)
 			{
-				GameObject _ch = Instantiate(ugChunks[3], new Vector3(x,baseUL-2,z), Quaternion.identity) as GameObject;
+				GameObject _ch = Instantiate(ugChunks[3], new Vector3(x*chunkSize,baseUL-2,z*chunkSize), Quaternion.identity) as GameObject;
 				_ch.transform.parent = folderUGdiamond.transform;
 			}
 		}

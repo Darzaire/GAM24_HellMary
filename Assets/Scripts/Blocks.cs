@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Blocks : MonoBehaviour {
-
-    public enum BlockTypes { Grass, Stone , Sand, Gravel, Water, Coal, Iron, Gold, Diamond /*,Cloud*/  };
+public class Blocks : MonoBehaviour
+{
+    public enum BlockTypes { Grass, Stone , Sand, Gravel, Water, Coal, Iron, Gold, Diamond };
 
     public Material[] blockmats;
 
     public BlockTypes thisBlockType;
     int health;
-    // Use this for initialization
-    void Start () {
+
+    void Start ()
+    {
         health = 2;
 
-        thisBlockType = BlockTypes.Sand;
+        thisBlockType = BlockTypes.Grass;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+	public void SetBlock(int toSet)
+    {
+        thisBlockType = (BlockTypes)toSet;
+        gameObject.GetComponent<Renderer>().material = blockmats[toSet];
+    }
 }
