@@ -16,7 +16,6 @@ public class CollectTest : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        material = GameObject.FindGameObjectWithTag("Material");
         playerPosition = transform.position.x;
     }
 

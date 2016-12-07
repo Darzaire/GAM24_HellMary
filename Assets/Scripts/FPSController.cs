@@ -23,6 +23,9 @@ public class FPSController : MonoBehaviour {
 	private Rigidbody rb;
     public bool isActive = false;
     public Animator anim;
+    public float dirtAmt = 0;
+    public float stoneAmt = 0;
+    //public float 
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
 	#endregion
@@ -116,6 +119,17 @@ public class FPSController : MonoBehaviour {
             anim.SetTrigger("Idle");
         }
 
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Dirt") 
+        {
+            dirtAmt += 1;
+        }
+        if(other.gameObject.tag == "Stone")
+        {
+            stoneAmt += 1;
+        }
     }
 	#endregion
 }

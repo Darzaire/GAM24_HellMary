@@ -4,7 +4,6 @@ using System.Collections;
 public class Materials : MonoBehaviour
 {
     public GameObject other;
-
     public float dist;
     public float maxDist = 2.0f;
     public bool isNear = false;
@@ -18,6 +17,7 @@ public class Materials : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     void OnTriggerEnter(Collider gameObject)
