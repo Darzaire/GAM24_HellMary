@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CritterMovement : MonoBehaviour
 {
-    public float moveSpeed = 10f;
+    public float moveSpeed = 0.1f;
     public float walkTime = 5.0f;
     public float WalkCoolDown = 3.0f;
 
@@ -13,7 +13,7 @@ public class CritterMovement : MonoBehaviour
         float temp = Random.Range(0f, 360f);
         transform.eulerAngles = new Vector3(0, temp, 0);
 
-        walkTime = Random.Range(9f, 10f);
+        walkTime = Random.Range(1f, 5f);
     }
 	// Use this for initialization
 	void Start ()
