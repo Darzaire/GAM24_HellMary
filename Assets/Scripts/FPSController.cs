@@ -21,8 +21,6 @@ public class FPSController : MonoBehaviour {
 	private float groundedMargin;
 	private Transform toonBody;
 	private Rigidbody rb;
-    public bool isDigging = false;
-    public Animator anim;
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
 	#endregion
@@ -39,12 +37,10 @@ public class FPSController : MonoBehaviour {
 		Cursor.visible = false;
 		lookMod = lookSensitivity * lookSmooth;
 		groundedMargin = this.transform.localScale.y;
-        //anim = GetComponent<Animator>();
-    }
+	}
 
 	void Update() {
 		GetInput();
-        DiggingHand();
 	}
 	#endregion
 
@@ -102,20 +98,5 @@ public class FPSController : MonoBehaviour {
 			this.rb.AddForce(Vector3.up * (jumpForce * (this.rb.mass * 100)));
 		}
 	}
-
-    public void DiggingHand()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            isDigging = true;
-            anim.SetTrigger("Digging");
-        }
-        else 
-        {
-            isDigging = false;
-            anim.SetTrigger("Idle");
-        }
-
-    }
 	#endregion
 }
