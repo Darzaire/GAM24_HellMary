@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Digging : MonoBehaviour
+public class CollectTest : MonoBehaviour
 {
     public GameObject material;
     public float playerPosition;
@@ -16,13 +16,13 @@ public class Digging : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        material = GameObject.FindGameObjectWithTag("Block");
+        material = GameObject.FindGameObjectWithTag("Material");
         playerPosition = transform.position.x;
     }
 
     void OnTriggerEnter(Collider gameObject)
     {
-        if(material.tag == "Block")
+        if(material.tag == "Material")
         {
             print("Is Digging");
         }
