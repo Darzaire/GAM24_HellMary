@@ -47,7 +47,7 @@ public class FPSController : MonoBehaviour {
 
 	void Update() {
 		GetInput();
-        DiggingHand();
+        Digging();
 	}
 	#endregion
 
@@ -106,7 +106,7 @@ public class FPSController : MonoBehaviour {
 		}
 	}
 
-    public void DiggingHand()
+    public void Digging()
     {
         if (Input.GetMouseButton(0))
         {

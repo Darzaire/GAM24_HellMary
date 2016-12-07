@@ -21,7 +21,7 @@ public class CollectTest : MonoBehaviour
 
     void OnTriggerEnter(Collider gameObject)
     {
-        if(material.tag == "Material")
+        if(material.gameObject.tag == "Material")
         {
             print("Is Digging");
         }
