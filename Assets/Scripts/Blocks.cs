@@ -3,12 +3,13 @@ using System.Collections;
 
 public class Blocks : MonoBehaviour
 {
+    public FPSController arm;
     public GameObject prefab;
     public float health = 10;
     // Use this for initialization
     void Start ()
     {
-	
+       
 	}
 	
 	// Update is called once per frame
@@ -22,7 +23,7 @@ public class Blocks : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "Arm")
+        if(arm.isActive && other.gameObject.name == "Arm")
         {
             health -= 1;
         }

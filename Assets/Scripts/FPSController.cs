@@ -21,7 +21,7 @@ public class FPSController : MonoBehaviour {
 	private float groundedMargin;
 	private Transform toonBody;
 	private Rigidbody rb;
-    public bool isDigging = false;
+    public bool isActive = false;
     public Animator anim;
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
@@ -107,12 +107,12 @@ public class FPSController : MonoBehaviour {
     {
         if (Input.GetMouseButton(0))
         {
-            isDigging = true;
+            isActive = true;
             anim.SetTrigger("Digging");
         }
         else 
         {
-            isDigging = false;
+            isActive = false;
             anim.SetTrigger("Idle");
         }
 
