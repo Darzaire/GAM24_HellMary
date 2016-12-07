@@ -18,12 +18,4 @@ public class CollectTest : MonoBehaviour
     {
         playerPosition = transform.position.x;
     }
-
-    void OnTriggerEnter(Collider gameObject)
-    {
-        if(material.gameObject.tag == "Material")
-        {
-            print("Is Digging");
-        }
-    }
 }

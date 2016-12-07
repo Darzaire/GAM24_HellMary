@@ -8,7 +8,7 @@ public class Materials : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-       
+        other = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class Materials : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Toon")
+        if(other.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
         }

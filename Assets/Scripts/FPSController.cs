@@ -25,6 +25,7 @@ public class FPSController : MonoBehaviour {
     public Animator anim;
     public float dirtAmt = 0;
     public float stoneAmt = 0;
+    public float woodAmt = 0;
     //public float 
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
@@ -122,13 +123,17 @@ public class FPSController : MonoBehaviour {
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Dirt") 
+        if (!isActive && other.gameObject.tag == "Dirt") 
         {
             dirtAmt += 1;
         }
-        if(other.gameObject.tag == "Stone")
+        if(!isActive && other.gameObject.tag == "Stone")
         {
             stoneAmt += 1;
+        }
+        if(!isActive && other.gameObject.tag == "Wood")
+        {
+            woodAmt += 1;
         }
     }
 	#endregion
