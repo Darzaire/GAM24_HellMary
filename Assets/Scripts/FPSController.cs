@@ -11,6 +11,8 @@ public class FPSController : MonoBehaviour {
 	public float jumpForce = 1000.0f;
 	public KeyCode runKey = KeyCode.LeftShift;
 	public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode openInventory = KeyCode.E;
+    public GameObject inventory;
 
 	private float speed = 6.0f;
 	private KeyCode esc = KeyCode.Escape;
@@ -120,6 +122,13 @@ public class FPSController : MonoBehaviour {
             anim.SetTrigger("Idle");
         }
 
+    }
+    void OpenAndCloseInventory()
+    {
+        if(Input.GetKeyDown(openInventory))
+        {
+            inventory.SetActive(true);
+        }
     }
     void OnTriggerEnter(Collider other)
     {
