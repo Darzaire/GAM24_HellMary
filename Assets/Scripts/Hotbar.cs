@@ -21,7 +21,6 @@ public class Hotbar : MonoBehaviour
 	int selected = 0; // which slot is selected
 	float[] cursorPoses = new float[12];
 	public Transform hotbarCursor;
-	public int current = 0; // what is in that slot. to be read by other scripts.
 
 	void Start()
 	{
@@ -90,6 +89,19 @@ public class Hotbar : MonoBehaviour
 	{
 		itemCount[selected] -= 1;
 		countText[selected].text = itemCount[selected].ToString();
+
+		if (itemCount[selected] <= 0)
+		{
+			itemCount[selected] = 0; // catches errors. just in case.
+			countText[selected].text = "";
+			itemSlots[selected] = ItemType.None;
+			rends[selected].sprite = itemSprites[0];
+		}
+	}
+
+	public int Current()
+	{
+		return (int)itemSlots[selected];
 	}
 
 	void Update()
