@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerUI : MonoBehaviour
 {
@@ -50,7 +52,7 @@ public class PlayerUI : MonoBehaviour
         if(currentHealth == 0)
         {
             isDead = true;
-            Application.LoadLevel(levelToLoad);
+            SceneManager.LoadScene(levelToLoad, LoadSceneMode.Additive);
         }
     }
 	
