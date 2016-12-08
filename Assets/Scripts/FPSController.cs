@@ -21,6 +21,11 @@ public class FPSController : MonoBehaviour {
 	private float groundedMargin;
 	private Transform toonBody;
 	private Rigidbody rb;
+    public bool isActive = false;
+    public Animator anim;
+    public float dirtAmt = 0;
+    public float stoneAmt = 0;
+    //public float 
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
 	#endregion
@@ -37,10 +42,12 @@ public class FPSController : MonoBehaviour {
 		Cursor.visible = false;
 		lookMod = lookSensitivity * lookSmooth;
 		groundedMargin = this.transform.localScale.y;
-	}
+        //anim = GetComponent<Animator>();
+    }
 
 	void Update() {
 		GetInput();
+        DiggingHand();
 	}
 	#endregion
 
@@ -98,5 +105,31 @@ public class FPSController : MonoBehaviour {
 			this.rb.AddForce(Vector3.up * (jumpForce * (this.rb.mass * 100)));
 		}
 	}
+
+    public void DiggingHand()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isActive = true;
+            anim.SetTrigger("Digging");
+        }
+        else 
+        {
+            isActive = false;
+            anim.SetTrigger("Idle");
+        }
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Dirt") 
+        {
+            dirtAmt += 1;
+        }
+        if(other.gameObject.tag == "Stone")
+        {
+            stoneAmt += 1;
+        }
+    }
 	#endregion
 }
