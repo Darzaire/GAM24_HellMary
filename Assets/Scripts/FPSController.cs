@@ -11,6 +11,8 @@ public class FPSController : MonoBehaviour {
 	public float jumpForce = 1000.0f;
 	public KeyCode runKey = KeyCode.LeftShift;
 	public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode openInventory = KeyCode.E;
+    public GameObject inventory;
 
 	private float speed = 6.0f;
 	private KeyCode esc = KeyCode.Escape;
@@ -26,7 +28,8 @@ public class FPSController : MonoBehaviour {
     public float dirtAmt = 0;
     public float stoneAmt = 0;
     public float woodAmt = 0;
-    //public float 
+    public bool isOpen = false;
+    public bool isClosed = true;
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
 	#endregion
@@ -36,7 +39,9 @@ public class FPSController : MonoBehaviour {
 		Speed = walkSpeed;
 		toonBody = this.transform;
 		rb = this.GetComponent<Rigidbody>();
-	}
+        inventory.SetActive(false);
+        inventory.GetComponent<Canvas>().enabled = true;
+    }
 
 	void Start() {
 		Cursor.lockState = CursorLockMode.Locked;
@@ -49,7 +54,8 @@ public class FPSController : MonoBehaviour {
 	void Update() {
 		GetInput();
         Digging();
-	}
+        OpenAndCloseInventory();
+    }
 	#endregion
 
 	#region Class Methods
@@ -109,7 +115,7 @@ public class FPSController : MonoBehaviour {
 
     public void Digging()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && isClosed)
         {
             isActive = true;
             anim.SetTrigger("Digging");
@@ -120,6 +126,25 @@ public class FPSController : MonoBehaviour {
             anim.SetTrigger("Idle");
         }
 
+    }
+    void OpenAndCloseInventory()
+    {
+        if(Input.GetKeyDown(openInventory) && isClosed)
+        {
+            isOpen = true;
+            isClosed = false;
+            inventory.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else if(Input.GetKeyDown(openInventory) && isOpen)
+        {
+            isClosed = true;
+            isOpen = false;
+            inventory.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
     void OnTriggerEnter(Collider other)
     {

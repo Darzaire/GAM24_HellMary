@@ -61,14 +61,14 @@ public class PlayerUI : MonoBehaviour
         {
             Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions array of textures
 
-            GUI.DrawTexture(new Rect(rect.x * (.9f * i), rect.y, 50, 18), heartTexture); //Draws textrues
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i), rect.y - 10, 50, 18), heartTexture); //Draws textrues
         }
 
         for (int i = 0; i < currentHunger; i++)
         {
             Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions ray of textures
             
-            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 11), rect.y, 50, 18), hungerTexture); //Draws textrues
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 11), rect.y - 10, 50, 18), hungerTexture); //Draws textrues
         }
     }
 
