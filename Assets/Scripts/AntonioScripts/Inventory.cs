@@ -7,12 +7,15 @@ public class Inventory : MonoBehaviour
     public List<GameObject> Slots = new List<GameObject>();
     public List<Item> Items = new List<Item>();
     public GameObject slots;
+    ItemDatabase database;
     int x = -240;
     int y = 200;
 
     // Use this for initialization
     void Start()
     {
+        database = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
+
         for (int i = 1; i < 6; i++)
         {
             for (int k = 1; k < 6; k++)
@@ -34,9 +37,31 @@ public class Inventory : MonoBehaviour
 	
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
 	
+	void addItem (int id)
+    {
+        for (int i = 0; i < database.items.Count; i++)
+        {
+            if (database.items[i].itemID == id)
+            {
+                Item item = database.items[i];
+                addItemAtEmptySlot(item);
+
+
+                break;
+            }
+        }
 	}
+
+    void addItemAtEmptySlot(Item item)
+    {
+        for(int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].itemName == null)
+            {
+                Items[i] = item;
+                break;
+            }
+        }
+    }
 }
