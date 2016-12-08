@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerUI : MonoBehaviour
 {
+    public string levelToLoad = "";
+
     Rect rect;
 
     public float currentHealth;
@@ -21,6 +23,7 @@ public class PlayerUI : MonoBehaviour
 
     public bool isStarving = false;
     public bool isDying = false;
+    bool isDead = false;
 
     // Use this for initialization
     void Start ()
@@ -42,6 +45,12 @@ public class PlayerUI : MonoBehaviour
         if(currentHealth == health)
         {
             isDying = false;
+        }
+
+        if(currentHealth == 0)
+        {
+            isDead = true;
+            Application.LoadLevel(levelToLoad);
         }
     }
 	

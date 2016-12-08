@@ -27,5 +27,14 @@ public class Blocks : MonoBehaviour
         {
             health -= 1;
         }
+        
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (!arm.isActive && other.gameObject.name == "Arm")
+        {
+            health = 10;
+        }
+    }
+
 }

@@ -4,14 +4,11 @@ using System.Collections;
 public class Materials : MonoBehaviour
 {
     public GameObject other;
-    public float dist;
-    public float maxDist = 2.0f;
-    public bool isNear = false;
-
+    
     // Use this for initialization
     void Start()
     {
-       
+        other = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -20,9 +17,9 @@ public class Materials : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider gameObject)
+    void OnTriggerEnter(Collider other)
     {
-        if(other.name == "Toon")
+        if(other.gameObject.tag == "Player")
         {
             Destroy(this.gameObject);
         }
