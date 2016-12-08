@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Hotbar : MonoBehaviour
 {
-	enum ItemType {None, Grass, Wood, Stone, Iron, Workbench,
+	enum ItemType {None, Grass, Wood, Stone, Iron, Meat, Workbench,
 		PickaxeWood, PickaxeStone, PickaxeIron,
 		AxeWood, AxeStone, AxeIron,
 		SwordWood, SwordStone, SwordIron};

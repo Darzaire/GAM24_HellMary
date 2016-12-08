@@ -162,9 +162,9 @@ public class FPSController : MonoBehaviour {
         {
             pickUp.Pickup(2);
         }
-        else
+        if (!isActive && other.gameObject.tag == "Meat")
         {
-            
+            pickUp.Pickup(5);
         }
     }
 	#endregion
