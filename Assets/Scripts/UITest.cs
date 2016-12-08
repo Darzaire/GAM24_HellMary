@@ -14,12 +14,12 @@ public class UITest : MonoBehaviour
     public float currentHealth;
 
     public float maxHunger = 100.0f;
-	private float currentHunger;
+    private float currentHunger;
 
-	public float maxThirst = 100.0f;
-	private float currentThirst;
+    public float maxThirst = 100.0f;
+    private float currentThirst;
 
-	public float drain = 5.0f; //Amount taken away from Thirst and Hunger
+    public float drain = 5.0f; //Amount taken away from Thirst and Hunger
     public float healthDamage = 5; //Amount of damage player takes
 
     public bool isStarving = false;
@@ -35,16 +35,16 @@ public class UITest : MonoBehaviour
     private float thirstStart = 0f;
     public float thirstCoolDown = 2f;
 
-	#region Properties
-	public float CurrentThirst {get {return currentThirst;}set {currentThirst = value;}}
-	public float CurrentHunger {get {return currentHunger;}set {currentHunger = value;}}
-	#endregion
+    #region Properties
+    public float CurrentThirst { get { return currentThirst; } set { currentThirst = value; } }
+    public float CurrentHunger { get { return currentHunger; } set { currentHunger = value; } }
+    #endregion
 
-	void Start()
+    void Start()
     {
-		inventoryUI.SetActive(false);
-		inventoryUI.GetComponent<Canvas>().enabled = true;
-		currentHealth = maxHealth;
+        inventoryUI.SetActive(false);
+        inventoryUI.GetComponent<Canvas>().enabled = true;
+        currentHealth = maxHealth;
         CurrentHunger = maxHunger;
         CurrentThirst = maxThirst;
     }
@@ -61,7 +61,7 @@ public class UITest : MonoBehaviour
             inventoryUI.SetActive(false);
         }
 
-        if(currentHealth >= maxHealth)
+        if (currentHealth >= maxHealth)
         {
             isDying = false;
         }
@@ -129,14 +129,14 @@ public class UITest : MonoBehaviour
         CurrentHunger += amount;
         hungerUI.value = CurrentHunger;
     }
-	public void Drink(float amount)
+    public void Drink(float amount)
     {
         CurrentThirst += amount;
         thirstUI.value = CurrentThirst;
     }
 
-	//Controls Thirst SliderUI with timer
-	public void Thirst(float amount)
+    //Controls Thirst SliderUI with timer
+    public void Thirst(float amount)
     {
         if (Time.time > thirstStart + thirstCoolDown)
         {
@@ -157,8 +157,8 @@ public class UITest : MonoBehaviour
         }
     }
 
-	//Controls Health Regen
-	public void HealthRegen(float amount)
+    //Controls Health Regen
+    public void HealthRegen(float amount)
     {
         if (isDying == true)
         {
