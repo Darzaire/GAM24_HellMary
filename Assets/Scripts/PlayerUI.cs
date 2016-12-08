@@ -31,7 +31,7 @@ public class PlayerUI : MonoBehaviour
         currentHunger = hunger;
         currentHealth = health;
 
-        rect = new Rect(Screen.width*0.05f,Screen.height*0.95f,Screen.width*0.05f,Screen.width*0.05f); //Places Texture in Proper position
+        rect = new Rect(Screen.width*0.02f,Screen.height*0.95f,Screen.width*0.05f,Screen.width*0.05f); //Places Texture in Proper position
         heartTexture = Resources.Load("Images/Heart") as Texture; //Loads texture being used
         hungerTexture = Resources.Load("Images/Hunger") as Texture;
     }
@@ -61,14 +61,14 @@ public class PlayerUI : MonoBehaviour
         {
             Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions array of textures
 
-            GUI.DrawTexture(new Rect(rect.x * (.9f * i), rect.y - 10, 50, 18), heartTexture); //Draws textrues
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 15), rect.y - 60, 50, 18), heartTexture); //Draws textrues
         }
 
         for (int i = 0; i < currentHunger; i++)
         {
             Rect newRect = new Rect(rect.x, rect.y, rect.width, rect.width); //Positions ray of textures
             
-            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 11), rect.y - 10, 50, 18), hungerTexture); //Draws textrues
+            GUI.DrawTexture(new Rect(rect.x * (.9f * i + 25), rect.y - 60, 50, 18), hungerTexture); //Draws textrues
         }
     }
 

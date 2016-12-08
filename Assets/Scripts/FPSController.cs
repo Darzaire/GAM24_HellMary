@@ -25,11 +25,13 @@ public class FPSController : MonoBehaviour {
 	private Rigidbody rb;
     public bool isActive = false;
     public Animator anim;
+    public Hotbar pickUp;
     public float dirtAmt = 0;
     public float stoneAmt = 0;
     public float woodAmt = 0;
     public bool isOpen = false;
     public bool isClosed = true;
+    public bool pickedUpItem = false;
 	#region Properties
 	public float Speed { get { return speed; } set { speed = value; } }
 	#endregion
@@ -150,15 +152,19 @@ public class FPSController : MonoBehaviour {
     {
         if (!isActive && other.gameObject.tag == "Dirt") 
         {
-            dirtAmt += 1;
+            pickUp.Pickup(1);
         }
         if(!isActive && other.gameObject.tag == "Stone")
         {
-            stoneAmt += 1;
+            pickUp.Pickup(3);
         }
         if(!isActive && other.gameObject.tag == "Wood")
         {
-            woodAmt += 1;
+            pickUp.Pickup(2);
+        }
+        else
+        {
+            
         }
     }
 	#endregion
