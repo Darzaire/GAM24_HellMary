@@ -155,15 +155,21 @@ public class CraftMaster : MonoBehaviour
 	{
 		if (resultBox.thisItem != 0 && current == 0)
 		{
-			for (int p = 0; p < 4; p++)
+			if (menu == 1)
 			{
-				workbenchCraftBoxes[p].sr.sprite = mouseHover.sr.sprite;
-				workbenchCraftBoxes[p].thisItem = 0;
+				for (int p = 0; p < 4; p++)
+				{
+					playerCraftBoxes[p].sr.sprite = mouseHover.sr.sprite;
+					playerCraftBoxes[p].thisItem = 0;
+				}
 			}
-			for (int w = 0; w < 9; w++)
+			else if (menu == 2)
 			{
-				workbenchCraftBoxes[w].sr.sprite = mouseHover.sr.sprite;
-				workbenchCraftBoxes[w].thisItem = 0;
+				for (int w = 0; w < 9; w++)
+				{
+					workbenchCraftBoxes[w].sr.sprite = mouseHover.sr.sprite;
+					workbenchCraftBoxes[w].thisItem = 0;
+				}
 			}
 			
 			current = resultBox.thisItem;

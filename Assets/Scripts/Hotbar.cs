@@ -7,7 +7,8 @@ public class Hotbar : MonoBehaviour
 	public enum ItemType {None, Grass, Wood, Stone, Iron, Workbench,
 		PickaxeWood, PickaxeStone, PickaxeIron,
 		AxeWood, AxeStone, AxeIron,
-		SwordWood, SwordStone, SwordIron};
+		SwordWood, SwordStone, SwordIron,
+		Meat};
 
 	public ItemType[] itemSlots = new ItemType[12];
 	public Sprite[] itemSprites = new Sprite[12];
