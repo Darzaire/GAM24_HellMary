@@ -23,7 +23,7 @@ public class CraftMaster : MonoBehaviour
 	{
 		// keybinding: open craft menu
 		if (Input.GetKeyDown(KeyCode.Tab))		 Menu(false);
-		if (Input.GetKeyDown(KeyCode.BackQuote)) Menu(true);
+		//if (Input.GetKeyDown(KeyCode.BackQuote)) Menu(true);
 
 		// keybinding: hotbar
 		if (Input.GetKeyDown(KeyCode.U))		 HotbarClick(hotbarBoxes[0], (int)hbCont.itemSlots[0]);
@@ -67,7 +67,7 @@ public class CraftMaster : MonoBehaviour
 		}
 	}
 
-	void Menu(bool bench)
+	public void Menu(bool bench)
 	{
 		if (bench) menu = 2;
 		else 

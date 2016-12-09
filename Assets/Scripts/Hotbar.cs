@@ -23,6 +23,8 @@ public class Hotbar : MonoBehaviour
 	float[] cursorPoses = new float[12];
 	public Transform hotbarCursor;
 
+	public PlayerUI pUI;
+
 	void Start()
 	{
 		// Assign renderers
@@ -97,6 +99,12 @@ public class Hotbar : MonoBehaviour
 			itemSlots[selected] = ItemType.None;
 			rends[selected].sprite = itemSprites[0];
 		}
+	}
+
+	public void Eat()
+	{
+		pUI.currentHunger += 1;
+		Putdown();
 	}
 
 	public int CraftingPickup(int _slot)
@@ -186,13 +194,13 @@ public class Hotbar : MonoBehaviour
 		}
 
 		// for testing purposes
-		if (Input.GetKeyDown(KeyCode.C))
+		/*if (Input.GetKeyDown(KeyCode.C))
 		{
 			Pickup(2);
 		}
 		if (Input.GetKeyDown(KeyCode.V))
 		{
 			Pickup(4);
-		}
+		}*/
 	}
 }
