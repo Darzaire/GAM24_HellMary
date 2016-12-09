@@ -52,7 +52,7 @@ public class PlayerUI : MonoBehaviour
         if(currentHealth == 0)
         {
             isDead = true;
-            SceneManager.LoadScene(levelToLoad, LoadSceneMode.Additive);
+            SceneManager.LoadScene(levelToLoad, LoadSceneMode.Single);
         }
     }
 	
