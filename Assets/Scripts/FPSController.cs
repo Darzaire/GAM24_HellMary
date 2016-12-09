@@ -129,41 +129,23 @@ public class FPSController : MonoBehaviour {
         }
 
     }
-    /*void OpenAndCloseInventory()
-    {
-        if(Input.GetKeyDown(openInventory) && isClosed)
-        {
-            isOpen = true;
-            isClosed = false;
-            inventory.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else if(Input.GetKeyDown(openInventory) && isOpen)
-        {
-            isClosed = true;
-            isOpen = false;
-            inventory.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-    }*/
+   
     void OnTriggerEnter(Collider other)
     {
-        if (!isActive && other.gameObject.tag == "Dirt") 
+        if (other.gameObject.tag == "Dirt") 
         {
         	print ("it's dirt");
             pickUp.Pickup(1);
         }
-        if(!isActive && other.gameObject.tag == "Stone")
+        if(other.gameObject.tag == "Stone")
         {
             pickUp.Pickup(3);
         }
-        if(!isActive && other.gameObject.tag == "Wood")
+        if(other.gameObject.tag == "Wood")
         {
             pickUp.Pickup(2);
         }
-        if (!isActive && other.gameObject.tag == "Meat")
+        if (other.gameObject.tag == "Meat")
         {
             pickUp.Pickup(15);
         }
