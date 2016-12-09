@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 public class Hotbar : MonoBehaviour
 {
-	enum ItemType {None, Grass, Wood, Stone, Iron, Meat, Workbench,
+	public enum ItemType {None, Grass, Wood, Stone, Iron, Workbench,
 		PickaxeWood, PickaxeStone, PickaxeIron,
 		AxeWood, AxeStone, AxeIron,
-		SwordWood, SwordStone, SwordIron};
+		SwordWood, SwordStone, SwordIron,
+		Meat};
 
-	ItemType[] itemSlots = new ItemType[12];
+	public ItemType[] itemSlots = new ItemType[12];
 	public Sprite[] itemSprites = new Sprite[12];
 	int[] itemCount = new int[12];
 
@@ -63,7 +64,6 @@ public class Hotbar : MonoBehaviour
 		// first check if we already have one of those
 		for (int s = 0; s < 12; s++)
 		{
-			print ((int)itemSlots[s]);
 			if ((int)itemSlots[s] == pickup) // if so, add one
 			{
 				itemCount[s] += 1;
@@ -97,6 +97,23 @@ public class Hotbar : MonoBehaviour
 			itemSlots[selected] = ItemType.None;
 			rends[selected].sprite = itemSprites[0];
 		}
+	}
+
+	public int CraftingPickup(int _slot)
+	{
+		int tempReturn = (int)itemSlots[_slot];
+		itemCount[_slot] -= 1;
+		countText[_slot].text = itemCount[_slot].ToString();
+
+		if (itemCount[_slot] <= 0)
+		{
+			itemCount[_slot] = 0; // catches errors. just in case.
+			countText[_slot].text = "";
+			itemSlots[_slot] = ItemType.None;
+			rends[_slot].sprite = itemSprites[0];
+		}
+
+		return tempReturn;
 	}
 
 	public int Current()
@@ -169,13 +186,13 @@ public class Hotbar : MonoBehaviour
 		}
 
 		// for testing purposes
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.C))
 		{
 			Pickup(2);
 		}
-		if (Input.GetKeyDown(KeyCode.O))
+		if (Input.GetKeyDown(KeyCode.V))
 		{
-			Pickup(5);
+			Pickup(4);
 		}
 	}
 }

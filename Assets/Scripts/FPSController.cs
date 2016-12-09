@@ -11,8 +11,8 @@ public class FPSController : MonoBehaviour {
 	public float jumpForce = 1000.0f;
 	public KeyCode runKey = KeyCode.LeftShift;
 	public KeyCode jumpKey = KeyCode.Space;
-    public KeyCode openInventory = KeyCode.E;
-    public GameObject inventory;
+    //public KeyCode openInventory = KeyCode.E;
+    //public GameObject inventory;
 
 	private float speed = 6.0f;
 	private KeyCode esc = KeyCode.Escape;
@@ -41,8 +41,8 @@ public class FPSController : MonoBehaviour {
 		Speed = walkSpeed;
 		toonBody = this.transform;
 		rb = this.GetComponent<Rigidbody>();
-        inventory.SetActive(false);
-        inventory.GetComponent<Canvas>().enabled = true;
+        //inventory.SetActive(false);
+        //inventory.GetComponent<Canvas>().enabled = true;
     }
 
 	void Start() {
@@ -56,13 +56,13 @@ public class FPSController : MonoBehaviour {
 	void Update() {
 		GetInput();
         Digging();
-        OpenAndCloseInventory();
+        //OpenAndCloseInventory();
     }
 	#endregion
 
 	#region Class Methods
 	void GetInput() {
-		MoveToon(Input.GetAxis("Vertical"), Input.GetAxis("Horizontal"));
+		MoveToon(Input.GetAxisRaw("Vertical"), Input.GetAxisRaw("Horizontal"));
 		Vector2 mouseDir = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 		LookToon(mouseDir);
 		if(Input.GetKeyDown(esc)) {
@@ -129,7 +129,7 @@ public class FPSController : MonoBehaviour {
         }
 
     }
-    void OpenAndCloseInventory()
+    /*void OpenAndCloseInventory()
     {
         if(Input.GetKeyDown(openInventory) && isClosed)
         {
@@ -147,11 +147,12 @@ public class FPSController : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-    }
+    }*/
     void OnTriggerEnter(Collider other)
     {
         if (!isActive && other.gameObject.tag == "Dirt") 
         {
+        	print ("it's dirt");
             pickUp.Pickup(1);
         }
         if(!isActive && other.gameObject.tag == "Stone")
@@ -164,7 +165,7 @@ public class FPSController : MonoBehaviour {
         }
         if (!isActive && other.gameObject.tag == "Meat")
         {
-            pickUp.Pickup(8);
+            pickUp.Pickup(15);
         }
     }
 	#endregion
